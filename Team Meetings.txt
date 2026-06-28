@@ -1,0 +1,96 @@
+29/05/2026 - Offline - 30-45 mins
+
+1.	Held a brief discussion on what things must be considered while developing the application such as the backend would be developed in either Java or Dotnet.
+
+2.	Himanshu explains the JWT based authentication workflow.
+
+3.	Meeting included the following team members:
+a.	Aishwarya 
+b.	Akash 
+c.	Himanshu
+d.	Mayuri 
+
+30/05/2026 - Online - ~ 1 hour
+
+1.	Held a brief discussion on
+a.	the text for the logo to be chosen for Algo Arena briefly..
+b.	the theme and the colors to be chosen for the application briefly.
+
+2.	Things must be considered while developing the frontend of the application in React such as different packages/libraries (Provided by ChatGPT):
+a.	React 19+
+b.	Vite
+c.	React Router
+d.	Redux Toolkit / Zustand
+e.	React Query (TanStack Query)
+f.	Axios
+g.	React Hook Form
+h.	Zod
+i.	Monaco Editor (code editor)
+j.	Socket.IO Client (real-time submissions)
+k.	Tailwind CSS
+l.	Shadcn UI
+m.	Framer Motion
+
+3.	Meeting included the following team members:
+a.	Aaron 
+b.	Aishwarya 
+c.	Akash 
+d.	Himanshu
+e.	Mayuri 
+
+31/05/2026 - Online - ~ 1.5 hour
+
+1.	Held discussion on the text for the logo to be chosen for Algo Arena from the following:
+a.	{@}
+b.	{A@}
+c.	{@A}
+d.	{@(A)}
+e.	<@>
+f.	<A@>
+g.	<@A>
+h.	<@(A)>
+
+2.	Discussed colored theme to be followed for Algo Arena:
+a.	Preferring dark mode
+b.	From the Tailwind CSS color palette version 3 (Emerald, Green, Blue, Amber) colors would be chosen.
+
+3.	Following are reference links discussed in the meeting:
+a.	https://uicolors.app/generate/teal
+b.	https://tailwindcss.com/docs/colors
+c.	https://chatgpt.com/share/6a1c47ad-c6b8-83e8-a4ee-a2ecba992cd5
+d.	https://v3.tailwindcss.com/docs/customizing-colors
+e.	https://color.adobe.com/create/color-wheel
+f.	https://colorhunt.co/palette/003049d62828f77f00fcbf49 
+
+4.	Meeting included the following team members:
+a.	Aaron 
+b.	Himanshu
+c.	Mayuri 
+
+01/06/2026 - Online - ~ 1 hour
+
+1.	Held a brief discussion on
+a.	the text for the logo to be chosen for Algo Arena briefly..
+b.	the theme and the colors to be chosen for the application briefly.
+
+2.	Things must be considered while developing the frontend of the application in React such as different packages/libraries (Provided by ChatGPT):
+a.	React 19+
+b.	Vite
+c.	React Router
+d.	Redux Toolkit / Zustand
+e.	React Query (TanStack Query)
+f.	Axios
+g.	React Hook Form
+h.	Zod
+i.	Monaco Editor (code editor)
+j.	Socket.IO Client (real-time submissions)
+k.	Tailwind CSS
+l.	Shadcn UI
+m.	Framer Motion
+
+3.	Meeting included the following team members:
+a.	Aaron 
+b.	Aishwarya 
+c.	Akash 
+d.	Himanshu
+e.	Mayuri 
