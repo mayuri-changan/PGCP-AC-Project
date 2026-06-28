@@ -1,0 +1,1 @@
+Algo Arena is a modern full-stack interview preparation platform that brings together coding challenges, curated learning resources, and interview preparation tools in a single dashboard. It helps aspiring software engineers practice, learn, and track their progress efficiently through an intuitive and user-friendly interface.
