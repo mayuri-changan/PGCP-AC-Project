@@ -1,0 +1,47 @@
+======= TEXT-BASED RELATIONSHIP DIAGRAM (OLD) =======
+                           ┌──────────────────────┐
+                           │        User          │
+                           │──────────────────────│
+                           │ _id                  │
+                           │ name                 │
+                           │ email                │
+                           │ password             │
+                           │ refreshTokens[]      │
+                           │ solvedProblems[]     │
+                           │ submissionsCount     │
+                           │ bookmarks[]          │
+                           └─────────┬────────────┘
+                                     │
+                 ┌───────────────────┼───────────────────┐
+                 │                   │                   │
+                 │                   │                   │
+                 ▼                   ▼                   ▼
+
+     ┌──────────────────┐   ┌──────────────────┐   ┌────────────────────┐
+     │   Submission     │   │  PasswordReset   │   │      Problem       │
+     │──────────────────│   │──────────────────│   │────────────────────│
+     │ userId ──────────┼──▶│ userId           │   │ _id                │
+     │ problemId ───────┼──▶│ email            │   │ title              │
+     │ code             │   │ otp (hashed)     │   │ difficulty         │
+     │ language         │   │ expiresAt        │   │ tags[]             │
+     │ status           │   │ isUsed           │   │ testCases[]        │
+     │ executionTime    │   └──────────────────┘   │ starterCode        │
+     │ memory           │                          │ submissionsCount   │
+     │ isAccepted       │                          │ solvedCount        │
+     └─────────┬────────┘                          │ articleCount       │
+               │                                   │ videoCount         │
+               │                                   └─────────┬──────────┘
+               │                                             │
+               │                                             │
+               ▼                                             ▼
+
+     ┌──────────────────┐                         ┌──────────────────┐
+     │     Article      │                         │      Video       │
+     │──────────────────│                         │──────────────────│
+     │ problemId ───────┼────────────────────────▶│ problemId        │
+     │ title            │                         │ title            │
+     │ slug             │                         │ url              │
+     │ content          │                         │ videoId          │
+     │ type             │                         │ type             │
+     │ isFeatured       │                         │ isFeatured       │
+     └──────────────────┘                         └──────────────────┘

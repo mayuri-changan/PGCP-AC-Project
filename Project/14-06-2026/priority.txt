@@ -1,0 +1,16 @@
+mandatory
+
+ppt
+    1. details of team members and their prn
+    2. name and intro
+    3. Problem statement
+    4. solution
+    5. dfd
+    6. tech + versions
+    7. things on which we have worked
+    8. thank you
+
+add-ons
+1. otp mechanism
+    -- is_verified BOOLEAN DEFAULT FALSE,
+2. Education details converting to resume.

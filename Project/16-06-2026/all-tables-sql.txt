@@ -1,0 +1,507 @@
+-- AUTHENTICATION
+-- --------------
+
+CREATE TABLE users (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+
+    role ENUM('USER', 'ADMIN') DEFAULT 'USER',
+
+    -- is_verified BOOLEAN DEFAULT FALSE,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE profiles (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    user_id BIGINT NOT NULL UNIQUE,
+
+    profile_picture_url VARCHAR(500),
+
+    first_name VARCHAR(50) NOT NULL,
+    middle_name VARCHAR(50),
+    last_name VARCHAR(50) NOT NULL,
+
+    phone_number VARCHAR(20),
+
+    gender ENUM(
+        'MALE',
+        'FEMALE',
+        'OTHER',
+        -- 'PREFER_NOT_TO_SAY'
+    ),
+
+    date_of_birth DATE,
+
+    bio TEXT,
+
+    -- preferred_language VARCHAR(50),
+
+    -- timezone VARCHAR(100),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_profile_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE addresses (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    user_id BIGINT NOT NULL UNIQUE,
+
+    -- flat_number VARCHAR(50),
+
+    -- building_name VARCHAR(150),
+
+    -- street VARCHAR(150),
+
+    city VARCHAR(100),
+
+    state VARCHAR(100),
+
+    country VARCHAR(100),
+
+    pincode VARCHAR(20),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_address_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE addresses (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    user_id BIGINT NOT NULL UNIQUE,
+
+    -- flat_number VARCHAR(50),
+
+    -- building_name VARCHAR(150),
+
+    -- street VARCHAR(150),
+
+    city VARCHAR(100),
+
+    state VARCHAR(100),
+
+    country VARCHAR(100),
+
+    pincode VARCHAR(20),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_address_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE professional_details (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    user_id BIGINT NOT NULL UNIQUE,
+
+    -- current_job_role VARCHAR(150),
+
+    -- company_name VARCHAR(150),
+
+    -- years_of_experience DECIMAL(4,1),
+
+    experience_level ENUM(
+        'STUDENT',
+        'FRESHER',
+        'INTERN',
+        'JUNIOR',
+        'MID_LEVEL',
+        'SENIOR'
+    ) DEFAULT 'STUDENT',
+
+    -- current_ctc DECIMAL(12,2),
+
+    -- expected_ctc DECIMAL(12,2),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_professional_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE social_links (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    user_id BIGINT NOT NULL UNIQUE,
+
+    github_url VARCHAR(255),
+
+    linkedin_url VARCHAR(255),
+
+    portfolio_url VARCHAR(255),
+
+    leetcode_url VARCHAR(255),
+
+    -- codeforces_url VARCHAR(255),
+
+    -- codechef_url VARCHAR(255),
+
+    -- hackerrank_url VARCHAR(255),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_social_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE refresh_tokens (
+
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    user_id BIGINT NOT NULL,
+
+    token VARCHAR(500) NOT NULL UNIQUE,
+
+    expiry_date TIMESTAMP NOT NULL,
+
+    -- revoked BOOLEAN DEFAULT FALSE,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_refresh_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);
+
+-- LEARNING CONTENT
+-- ---------------
+
+CREATE TABLE articles (
+
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    topic_id BIGINT NOT NULL,
+
+    author_id BIGINT NOT NULL,
+
+    title VARCHAR(255) NOT NULL,
+
+    slug VARCHAR(255) NOT NULL UNIQUE,
+
+    summary TEXT,
+
+    content LONGTEXT NOT NULL,
+
+    -- difficulty ENUM(
+    --     'BEGINNER',
+    --     'INTERMEDIATE',
+    --     'ADVANCED'
+    -- ) DEFAULT 'BEGINNER',
+
+    is_published BOOLEAN DEFAULT TRUE,
+
+    -- view_count BIGINT DEFAULT 0,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_article_topic
+        FOREIGN KEY (topic_id)
+        REFERENCES topics(id),
+
+    CONSTRAINT fk_article_author
+        FOREIGN KEY (author_id)
+        REFERENCES users(id)
+);
+
+CREATE TABLE video_resources (
+
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    topic_id BIGINT NOT NULL,
+
+    added_by BIGINT NOT NULL,
+
+    title VARCHAR(255) NOT NULL,
+
+    description TEXT,
+
+    video_url VARCHAR(500) NOT NULL,
+
+    platform ENUM(
+        'YOUTUBE',
+        'UDACITY',
+        'UDEMY',
+        'COURSERA',
+        'OTHER'
+    ) DEFAULT 'YOUTUBE',
+
+    duration_minutes INT,
+
+    -- difficulty ENUM(
+    --     'BEGINNER',
+    --     'INTERMEDIATE',
+    --     'ADVANCED'
+    -- ) DEFAULT 'BEGINNER',
+
+    is_active BOOLEAN DEFAULT TRUE,
+
+    -- view_count BIGINT DEFAULT 0,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_video_topic
+        FOREIGN KEY (topic_id)
+        REFERENCES topics(id),
+
+    CONSTRAINT fk_video_creator
+        FOREIGN KEY (added_by)
+        REFERENCES users(id)
+);
+
+CREATE TABLE problem_articles (
+
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    problem_id BIGINT NOT NULL,
+
+    article_id BIGINT NOT NULL,
+
+    FOREIGN KEY(problem_id)
+        REFERENCES problems(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY(article_id)
+        REFERENCES articles(id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE problem_videos (
+
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    problem_id BIGINT NOT NULL,
+
+    video_id BIGINT NOT NULL,
+
+    FOREIGN KEY(problem_id)
+        REFERENCES problems(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY(video_id)
+        REFERENCES video_resources(id)
+        ON DELETE CASCADE
+);
+
+-- PROBLEM SOLVING
+-- ---------------
+
+CREATE TABLE topics (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    name VARCHAR(100) NOT NULL UNIQUE,
+
+    description TEXT,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE problems (
+
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    topic_id BIGINT NOT NULL,
+
+    title VARCHAR(255) NOT NULL,
+
+    slug VARCHAR(255) NOT NULL UNIQUE,
+
+    difficulty ENUM(
+        'EASY',
+        'MEDIUM',
+        'HARD'
+    ) NOT NULL,
+
+    description LONGTEXT NOT NULL,
+
+    created_by BIGINT,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    FOREIGN KEY(topic_id)
+        REFERENCES topics(id),
+
+    FOREIGN KEY(created_by)
+        REFERENCES users(id)
+);
+
+CREATE TABLE problem_examples (
+
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    problem_id BIGINT NOT NULL,
+
+    example_order INT NOT NULL,
+
+    input_data TEXT NOT NULL,
+
+    output_data TEXT NOT NULL,
+
+    explanation TEXT,
+
+    FOREIGN KEY(problem_id)
+        REFERENCES problems(id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE problem_constraints (
+
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    problem_id BIGINT NOT NULL,
+
+    constraint_text VARCHAR(255) NOT NULL,
+
+    FOREIGN KEY(problem_id)
+        REFERENCES problems(id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE tags (
+
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    name VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE problem_tags (
+
+    problem_id BIGINT NOT NULL,
+
+    tag_id BIGINT NOT NULL,
+
+    PRIMARY KEY(problem_id, tag_id),
+
+    FOREIGN KEY(problem_id)
+        REFERENCES problems(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY(tag_id)
+        REFERENCES tags(id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE test_cases (
+
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    problem_id BIGINT NOT NULL,
+
+    input_data LONGTEXT NOT NULL,
+
+    expected_output LONGTEXT NOT NULL,
+
+    is_hidden BOOLEAN DEFAULT FALSE,
+
+    FOREIGN KEY(problem_id)
+        REFERENCES problems(id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE submissions (
+
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+
+    user_id BIGINT NOT NULL,
+
+    problem_id BIGINT NOT NULL,
+
+    language VARCHAR(50) NOT NULL,
+
+    source_code LONGTEXT NOT NULL,
+
+    status ENUM(
+        'ACCEPTED',
+        'WRONG_ANSWER',
+        'TIME_LIMIT_EXCEEDED',
+        'RUNTIME_ERROR',
+        'COMPILATION_ERROR'
+    ) NOT NULL,
+
+    execution_time DECIMAL(10,2),
+
+    memory_used DECIMAL(10,2),
+
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY(user_id)
+        REFERENCES users(id),
+
+    FOREIGN KEY(problem_id)
+        REFERENCES problems(id)
+);
+
+CREATE TABLE user_problem_status (
+
+    user_id BIGINT NOT NULL,
+
+    problem_id BIGINT NOT NULL,
+
+    status ENUM(
+        'NOT_STARTED',
+        'ATTEMPTED',
+        'SOLVED'
+    ) DEFAULT 'NOT_STARTED',
+
+    solved_at TIMESTAMP NULL,
+
+    PRIMARY KEY(user_id, problem_id),
+
+    FOREIGN KEY(user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY(problem_id)
+        REFERENCES problems(id)
+        ON DELETE CASCADE
+);

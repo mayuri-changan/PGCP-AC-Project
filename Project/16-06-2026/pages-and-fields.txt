@@ -1,0 +1,52 @@
+Following are the features or the pages that I would like to in my platform: 
+- User authentication 
+- Profile 
+- dashboard 
+- problems
+- code editor
+- blog or article
+- video references and links
+
+- User authentication 
+        - First name 
+        - middle name
+        - last name 
+        - phone
+        - email
+        - password
+        - confirm password
+    - login 
+        - email
+        - password
+    - forgot password
+        - email (optional - otp must be sent)
+        - password
+    - 
+
+- Once the user is logged in the user would be redirected to the dashboard.
+
+Then user can perform multiple actions from the list:
+- View nd edit profile
+- List of all the problems
+
+If the user moves to the profile page he can view the listed things:
+- profile pic
+- First name 
+- middle name
+- last name 
+- email
+- phone number
+- gender 
+- Date of birth
+- Address
+    - flat number and building name 
+    - street
+    - City
+    - state
+    - pincode
+- Education
+    - Name of the institute
+- social media links such as 
+    - Linkedin 
+    - github
+

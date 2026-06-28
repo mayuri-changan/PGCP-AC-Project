@@ -1,0 +1,28 @@
+AUTHENTICATION
+--------------
+users
+profiles
+addresses
+education_details
+professional_details
+social_links
+refresh_tokens
+
+PROBLEM SOLVING
+---------------
+topics
+problems
+problem_examples
+problem_constraints
+tags
+problem_tags
+test_cases
+submissions
+user_problem_status
+
+LEARNING CONTENT
+----------------
+articles
+video_resources
+problem_articles
+problem_videos
